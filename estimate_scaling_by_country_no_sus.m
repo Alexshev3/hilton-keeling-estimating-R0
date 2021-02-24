@@ -4,6 +4,7 @@
 
 k_china = xlsread('inputs/MUestimates_all_locations_1.xlsx','China');
 z=ones(16,1);
+% TODO Why need to define age_mat_china? This is equal to k_china
 age_mat_china=z'.*k_china;
 scaling_china=eigs(age_mat_china,1);
 z=z/scaling_china;
@@ -15,6 +16,7 @@ ScalingFactor=zeros(length(Country),1);
 
 for i=1:length(Country1)
     k = table2array(readtable('inputs/MUestimates_all_locations_1.xlsx','Sheet',Country1{i}));
+    % TODO Why need to define age_mat_china? This is equal to k
     age_mat=z.*k;
     ScalingFactor(i)=eigs(age_mat,1);
 end
@@ -26,7 +28,10 @@ end
 
 T=table(Country,ScalingFactor);
 
+%Consensus_names appears to be just a file where simplified coutries names
+%are used, e.g. "Venezuela (Bolivarian Republic of Venezuela)" becomes
+%"Venezuela"
 consensus_names = readcell("inputs/consensus_names.csv");
 T.Country = consensus_names;
 
-writetable(T,"outputs/no_sus_scaling.csv");
+writetable(T,"master_outputs/no_sus_scaling.csv");
