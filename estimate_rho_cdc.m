@@ -20,4 +20,4 @@ for i=1:length(rho)
     rho(i)=data(i)/(data*k_china(:,i));
 end
 
-writematrix(rho,"outputs/rho_estimate_cdc.csv");
+writematrix(rho,"master_outputs/rho_estimate_cdc.csv");
