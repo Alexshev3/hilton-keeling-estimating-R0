@@ -11,13 +11,18 @@ china_pop_pyramid = china_pyr_tbl.M+china_pyr_tbl.F;
 k_china=aggregate_contact_matrix( k_china,prem_bds,cdc_bds,china_pop_pyramid);
 
 data=load("inputs/china_cdc_data.mat").china_cdc_data; % Load case data
-data(length(cdc_bds)-1)=sum(data(length(cdc_bds)-1:end));
-data=data(1:length(cdc_bds)-1);
+% These underneath are a repetition of the one above
+% data(length(cdc_bds)-1)=sum(data(length(cdc_bds)-1:end));
+% data=data(1:length(cdc_bds)-1);
 
 % Now infer rho using the formula from our Supplementary Information
 rho=zeros(length(cdc_bds)-1,1);
 for i=1:length(rho)
-    rho(i)=data(i)/(data*k_china(:,i));
+    %R0 is assumed 1 to calculate scaling factor
+    % Why rho(i) is like that? What they write in the paper and in the code seem to be
+    %different. What's the good one?
+%     rho(i)=data(i)/(k_china(i,:)*data'); %By Alex (i.e. as in the Appendix)
+    rho(i)=data(i)/(data*k_china(:,i)); %By Hilton & Keeling
 end
 
 writematrix(rho,"master_outputs/rho_estimate_cdc.csv");

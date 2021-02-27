@@ -3,7 +3,7 @@ The code in this repository accompanies our upcoming paper "Estimation of countr
 
 estimate_scaling_by_country_no_sus.m. generates a set of scaling factors on R0 assuming a null, purely contact intensity-based model using the country-level contact matrices stored in inputs/MUestimates_all_locations_1.xlsx and inputs/MUestimates_all_locations_2.xlsx.
 
-estimate_rho_cdc.m generates a set of estimates for rho = sigma*d, the age-stratified scaling on contact intensity in a model with age-specific susceptibility and/or detection, given the China CDC weekly data stored in inputschina_cdc_data.mat.
+estimate_rho_cdc.m generates a set of estimates for rho = sigma*d, the age-stratified scaling on contact intensity in a model with age-specific susceptibility and/or detection, given the China CDC weekly data stored in inputs china_cdc_data.mat.
 
 estimate_scaling_by_country_cdc.m generates a set of scaling factors on R0 assuming age-specific susceptibility/detection based on the estimate of rho generated in estimate_rho_cdc.m.
 

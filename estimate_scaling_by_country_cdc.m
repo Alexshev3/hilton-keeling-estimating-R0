@@ -5,9 +5,9 @@ cdc_bds = 0:10:80; % age classes used in the cdc study, with 80 introduced as up
 
 aggregator=zeros(length(prem_bds)-1,1); % This matrix stores where each class in finer structure is in coarser structure
 for i=1:length(prem_bds)-1
-aggregator(i)=find(cdc_bds>=prem_bds(i+1),1)-1;
+    aggregator(i)=find(cdc_bds>=prem_bds(i+1),1)-1;
 end
-rho_long=sparse(1:length(aggregator),ones(1,length(aggregator)),rho(aggregator));
+rho_long=sparse(1:length(aggregator),ones(1,length(aggregator)),rho(aggregator)); % This matrix stores an aggregated form of rhos data
 
 [~,Country1]=xlsfinfo('inputs/MUestimates_all_locations_1.xlsx');
 [~,Country2]=xlsfinfo('inputs/MUestimates_all_locations_2.xlsx');
@@ -30,4 +30,4 @@ T=table(Country,ScalingFactor);
 consensus_names = readcell("inputs/consensus_names.csv");
 T.Country = consensus_names;
 
-writetable(T,"outputs/cdc_scaling.csv");
+writetable(T,"master_outputs/cdc_scaling.csv");

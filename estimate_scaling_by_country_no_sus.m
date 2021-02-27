@@ -16,7 +16,6 @@ ScalingFactor=zeros(length(Country),1);
 
 for i=1:length(Country1)
     k = table2array(readtable('inputs/MUestimates_all_locations_1.xlsx','Sheet',Country1{i}));
-    % TODO Why need to define age_mat_china? This is equal to k
     age_mat=z.*k;
     ScalingFactor(i)=eigs(age_mat,1);
 end

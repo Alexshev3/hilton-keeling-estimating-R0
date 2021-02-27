@@ -1,6 +1,7 @@
 % This script generates the map which appears as Figure 1 of our paper.
 
 %% Setup the Import Options
+%Not clear how this stuff works, especially the options settings
 opts = delimitedTextImportOptions("NumVariables", 2);
  
 % Specify range and delimiter
@@ -37,6 +38,8 @@ for i=1:length(M)
         % need to do more to find country
         Z=strcmp(M(i).ABBREV,Country);
         m=find(Z==1);
+        if not(isempty(m))
+        end
     end
     
     if isempty(m)
@@ -48,8 +51,9 @@ for i=1:length(M)
         success_count=success_count+1;
     end
 end
- 
-Q(4)=149; Q(76)=110;
+
+%Maybe error? It's laready Q(4)=149, Q(76)=110
+% Q(4)=149; Q(76)=110;
  
 Cmap = [165,0,38; 215,48,39; 244,109,67; 253,174,97; 254,224,144; 255,255,191; 224,243,248; 171,217,233; 116,173,209; 69,117,180; 49,54,149];
 Cmap = Cmap(end:-1:1,:)/max(max(Cmap));
